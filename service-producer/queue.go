@@ -1,8 +1,10 @@
 package main
 
 import (
+	"fmt"
 	"github.com/eapache/queue"
 	"sync"
+	"time"
 )
 
 var Cond = sync.NewCond(&sync.Mutex{})
@@ -15,11 +17,17 @@ func FillQueue() {
 			panic(err.Error())
 		}
 		Queue.Add(byts)
-		if Queue.Length()%1024 == 0 {
-			Cond.L.Lock()
-			allowToProduce = true
-			Cond.Broadcast()
-			Cond.L.Unlock()
-		}
+
+		fmt.Println("added:", string(byts), "queue length:", Queue.Length())
+		go func() {
+			if Queue.Length()%1024 == 0 {
+				Cond.L.Lock()
+				fmt.Println("allowing to produce...")
+				allowToProduce = true
+				Cond.Broadcast()
+				Cond.L.Unlock()
+			}
+		}()
+		time.Sleep(5 * time.Millisecond)
 	}
 }

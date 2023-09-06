@@ -1,1 +1,10 @@
 kafka produce
+test kafka using it mocks
+use redis for verification
+-we must batch insert and remove the ones that had error
+
+
+
+--README
+I didn't hard code verification and I implement verification using redis
+Testing
