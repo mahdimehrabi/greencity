@@ -12,7 +12,7 @@ var allowToProduce = false
 var kafka = NewKafkaProducer([]string{"localhost:29092", "localhost:39092"})
 var queueMutex = sync.Mutex{}
 
-func Producer(topic string, partition int32, wg *sync.WaitGroup) {
+func Producer(producer sarama.AsyncProducer, topic string, partition int32, wg *sync.WaitGroup) {
 	defer func() {
 		recover()
 		wg.Done()
@@ -27,7 +27,7 @@ func Producer(topic string, partition int32, wg *sync.WaitGroup) {
 		}()
 
 		//produce to kafka
-		kafka.Input() <- &sarama.ProducerMessage{
+		producer.Input() <- &sarama.ProducerMessage{
 			Topic:     topic,
 			Value:     sarama.ByteEncoder(data),
 			Partition: partition,
@@ -48,10 +48,10 @@ func ProduceKafka() {
 		Cond.L.Unlock()
 		wg := new(sync.WaitGroup)
 		wg.Add(4)
-		go Producer("green-city", 0, wg)
-		go Producer("green-city", 1, wg)
-		go Producer("green-city", 2, wg)
-		go Producer("green-city", 3, wg)
+		go Producer(kafka, "green-city", 0, wg)
+		go Producer(kafka, "green-city", 1, wg)
+		go Producer(kafka, "green-city", 2, wg)
+		go Producer(kafka, "green-city", 3, wg)
 		wg.Wait()
 
 		//stopping produce
