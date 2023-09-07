@@ -6,7 +6,7 @@ using a docker network that I defined its name to 'green'<br>
 #### Results 
 you can see result of producer using: <br> 
 ``` docker compose logs -f producer``` <br> <br> 
-and you can see result of consumer using: <br>
+and you can see result of consumer which contains verification prints using: <br>
 ``` docker compose logs -f consumer``` <br> <br>
 
 ### Verification
