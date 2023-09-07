@@ -12,12 +12,11 @@ var rdb = redis.NewClient(&redis.Options{
 	DB:       0,  // use default DB
 })
 
-func ValidateMessageRedis(message []byte) {
+func ValidateMessageRedis(message []byte) error {
 	msg := string(message)
 	_, err := rdb.Get(context.Background(), msg).Result()
 	if err == nil {
 		fmt.Println("validated:", msg)
-	} else {
-		fmt.Println("failed to validate:", msg, err)
 	}
+	return err
 }

@@ -4,10 +4,12 @@ package main
 import (
 	"context"
 	"errors"
+	"fmt"
 	"github.com/IBM/sarama"
 	"log"
 	"strings"
 	"sync"
+	"time"
 )
 
 // Sarama configuration options
@@ -101,7 +103,15 @@ func (consumer *Consumer) ConsumeClaim(session sarama.ConsumerGroupSession, clai
 				log.Printf("message channel was closed")
 				return nil
 			}
-			go ValidateMessageRedis(message.Value)
+			go func() {
+				err := ValidateMessageRedis(message.Value)
+				if err != nil {
+					//maybe kafka stored message first, so we try again 10 seconds later
+					time.Sleep(10 * time.Second)
+					err = ValidateMessageRedis(message.Value)
+					fmt.Println("failed to validate message", message.Value, "error", err)
+				}
+			}()
 			session.MarkMessage(message, "")
 		case <-session.Context().Done():
 			return nil
