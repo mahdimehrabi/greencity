@@ -3,7 +3,8 @@ kafka consumer
 use redis for verification
 -we insert it in producer and check and delete it on consumer
 
-
+docker compose even go apps
+network bridge between them
 
 --README
 how to run

@@ -25,6 +25,7 @@ func Producer(producer sarama.AsyncProducer, topic string, partition int32, wg *
 			data = Queue.Peek().([]byte)
 			Queue.Remove()
 		}()
+		go StoreMessageRedis(data)
 
 		//produce to kafka
 		producer.Input() <- &sarama.ProducerMessage{
