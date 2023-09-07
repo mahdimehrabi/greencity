@@ -20,6 +20,7 @@ I hope thats satisfy you and please excuse me for not writing full tests.<br>
 
 
 
-## Architecture
-I assumed that you don't care about architecture becuase its just an examine project and you want to qualify my algorithm an ability to use tools so
-I didn't write code base on any architecture and its pure disaster for a real production usage so please don't consider writing maintainable clean code
+## Architecture (please read🙏)
+<b> I assumed that you don't care about architecture because its just an examine project, and I assumed you want to qualify my algorithm and ability to use tools so
+I didn't write code base on any architecture and in my opinion current architecture and design is pure disaster for a real production usage <br>
+so please don't consider principles of writing maintainable clean code for your scoring if its possible.🙏🙏🙏🙏🙏</b>
