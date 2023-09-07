@@ -1,10 +1,14 @@
-kafka produce
-test kafka using it mocks
+kafka consumer
+
 use redis for verification
--we must batch insert and remove the ones that had error
+-we insert it in producer and check and delete it on consumer
 
 
 
 --README
+how to run
+-docker compose all
 I didn't hard code verification and I implement verification using redis
 Testing
+tests are minimized just for you know that I know how to write tests
+consumer
