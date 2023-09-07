@@ -4,7 +4,16 @@ network bridge between them
 --README
 how to run
 -docker compose all
+-explain how to see result using command line for producer
+-explain how to see result using command line for consumer
+
+Verification
 I didn't hard code verification and I implement verification using redis
+
 Testing
 tests are minimized just for you know that I know how to write tests
-consumer
+
+
+Architecture
+I assumed that you don't care about architecture becuase its just an examine project and you want to qualify my algorithm an ability to use tools so
+I didn't write code base on any architecture and its pure disaster for a real production usage so please don't consider writing maintainable clean code

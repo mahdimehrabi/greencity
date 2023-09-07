@@ -9,7 +9,7 @@ import (
 )
 
 var allowToProduce = false
-var kafka = NewKafkaProducer([]string{"localhost:29092", "localhost:39092"})
+var kafka = NewKafkaProducer([]string{"kafka-1:9092", "localhost:9093"})
 var queueMutex = sync.Mutex{}
 
 func Producer(producer sarama.AsyncProducer, topic string, partition int32, wg *sync.WaitGroup) {

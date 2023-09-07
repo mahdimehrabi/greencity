@@ -14,7 +14,7 @@ import (
 
 // Sarama configuration options
 var (
-	brokers  = "localhost:29092,localhost:39092"
+	brokers  = "kafka-1:9092,kafka-2:9093"
 	group    = "green-group"
 	topics   = "green-city"
 	assignor = "range"
